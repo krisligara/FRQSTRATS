@@ -1,0 +1,33 @@
+{
+  "strategy_name": "FrayStratBTCUSDT",
+  "params": {
+    "trailing": {
+      "trailing_stop": true,
+      "trailing_stop_positive": 0.02,
+      "trailing_stop_positive_offset": 0.03,
+      "trailing_only_offset_is_reached": true
+    },
+    "buy": {
+      "buy_rsi": 15
+    },
+    "sell": {
+      "sell_rsi": 89
+    },
+    "protection": {
+      "cooldown_lookback": 5,
+      "stop_duration": 5,
+      "use_stop_protection": true
+    },
+    "roi": {
+      "0": 0.33099999999999996,
+      "32": 0.152,
+      "208": 0.146,
+      "525": 0.1
+    },
+    "stoploss": {
+      "stoploss": -0.229
+    }
+  },
+  "ft_stratparam_v": 1,
+  "export_time": "2021-10-17 17:39:00.763415+00:00"
+}

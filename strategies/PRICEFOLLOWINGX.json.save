@@ -1,0 +1,29 @@
+{
+  "strategy_name": "PRICEFOLLOWINGX",
+  "params": {
+    "buy": {
+      "rsi_value": 39
+    },
+    "sell": {
+      "sell_rsi_value": 55
+    },
+    "protection": {},
+    "roi": {
+      "0": 0.03,
+      "85": 0.045,
+      "125": 0.045,
+      "359": 0
+    },
+    "stoploss": {
+      "stoploss": -0.15
+    },
+    "trailing": {
+      "trailing_stop": true,
+      "trailing_stop_positive": 0.02,
+      "trailing_stop_positive_offset": 0.04,
+      "trailing_only_offset_is_reached": true
+    }
+  },
+  "ft_stratparam_v": 1,
+  "export_time": "2021-10-30 17:32:51.922294+00:00"
+}

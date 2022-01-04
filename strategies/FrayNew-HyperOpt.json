@@ -1,0 +1,38 @@
+{
+  "strategy_name": "NEWTEST15m",
+  "params": {
+    "stoploss": {
+      "stoploss": -0.297
+    },
+    "trailing": {
+      "trailing_stop": true,
+      "trailing_stop_positive": 0.01,
+      "trailing_stop_positive_offset": 0.015,
+      "trailing_only_offset_is_reached": true
+    },
+    "buy": {
+      "buy_dip_frsi": -0.095,
+      "buy_frsi": 0.836,
+      "ema_pct": 0.613,
+      "frsi_pct": 0.011
+    },
+    "sell": {
+      "macd_diff": 85,
+      "macd_signal_pos": 285.6,
+      "sell_frsi": 0.7
+    },
+    "protection": {
+      "cooldown_lookback": 3,
+      "stop_duration": 3,
+      "use_stop_protection": true
+    },
+    "roi": {
+      "0": 0.274,
+      "72": 0.113,
+      "180": 0.029,
+      "536": 0
+    }
+  },
+  "ft_stratparam_v": 1,
+  "export_time": "2021-11-08 15:31:40.898043+00:00"
+}

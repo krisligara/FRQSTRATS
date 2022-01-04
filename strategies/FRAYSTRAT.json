@@ -1,0 +1,29 @@
+{
+  "strategy_name": "FRAYSTRAT",
+  "params": {
+    "trailing": {
+      "trailing_stop": true,
+      "trailing_stop_positive": 0.02,
+      "trailing_stop_positive_offset": 0.03,
+      "trailing_only_offset_is_reached": true
+    },
+    "buy": {
+      "buy_rsi": 50
+    },
+    "sell": {
+      "sell_rsi": 79
+    },
+    "protection": {},
+    "roi": {
+      "0": 0.12000000000000001,
+      "93": 0.07100000000000001,
+      "258": 0.05,
+      "601": 0
+    },
+    "stoploss": {
+      "stoploss": -0.236
+    }
+  },
+  "ft_stratparam_v": 1,
+  "export_time": "2021-10-17 17:23:40.540508+00:00"
+}

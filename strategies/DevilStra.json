@@ -1,0 +1,29 @@
+{
+  "strategy_name": "DevilStra",
+  "params": {
+    "stoploss": {
+      "stoploss": -0.28
+    },
+    "trailing": {
+      "trailing_stop": false,
+      "trailing_stop_positive": null,
+      "trailing_stop_positive_offset": 0.0,
+      "trailing_only_offset_is_reached": false
+    },
+    "buy": {
+      "buy_spell": "La,La,Lu,De,Gu,Gu,De,Lu,La,Lu,Lu,Si,De,Ra,Pa,De,Ra,De,Cu,Pa,Pa,Gu,Zi,Pa,Lu,Pa,Si,Gu,De,Pa,La,Lu,Si,De,Pa,Gu,Si,Cu,Ra,Cu,Cu,Ra,Pa,Gu,Cu,Pa,La,Gu,Si,La,Lu,Zi,Pa,Zi,Si,De,Lu,Ra,Si,Ra,Zi,Ra,Ra,La,Gu,La,Lu,De,Pa,Si,Ra,Gu,De,Zi,Si,La,La,Lu,Cu,Lu,Ra,La,Si,Cu,Zi,Cu,Pa,Zi,Pa,Cu,Zi,Ra,La,Ra,Cu,La,Lu,Pa,Lu,Lu,Si,La,La,Zi,Pa,Lu,Gu,La,De,Gu,Ra,Cu,Zi,Si,Cu,De,Lu,Ra,Cu,Ra,Pa,Cu,La,Zi,Pa,La,Gu,Lu,Zi,Ra,Si,Lu,Gu,Lu,Zi,Zi,La,Cu,Pa,La,Lu,Lu,Lu,Pa,Cu,Zi,La,Si,Cu,Zi,Gu,Zi,De,Cu,Lu,Si,Gu,Pa,Zi,La,Cu,Cu,La,Pa,La,Lu,Si,De,De,Ra,Lu,Ra,Gu,Ra,Zi,Cu,Lu,De,Cu,Lu,Cu,Si,De,Gu,Zi,Zi,Ra,De,Cu,Zi,De,De,Cu,Lu,Zi,Pa,La,La,Si,La,Zi,La,Pa,Lu,Zi,De,Ra,Pa,Zi,La,Gu,Ra,De,Lu,Si,Cu,Si,Ra,Ra,Ra,Gu,Gu,Gu,Lu,Cu,La,La,Pa,Cu,Lu,Pa,Gu,La,Gu,Ra,Ra,Zi,La,Gu,Lu,Gu,Lu,Gu,Ra,Lu,Lu,Gu,Si,Lu,Gu,La,Zi,Zi,De,Ra,Gu,Cu,Zi,Zi,Ra,Lu,Pa,Pa,Zi,Gu,De,Cu,Si,Cu"
+    },
+    "sell": {
+      "sell_spell": "Pa,Ra,Zi,Lu,La,La,Ra,Ra,De,Gu,Pa,Ra,Gu,Pa,Ra,Pa,Lu,Pa,Si,Zi,Lu,Si,Pa,Cu,De,Cu,Pa,Cu,Ra,Si,Pa,Lu,Cu,Cu,Cu,Si,Gu,De,Cu,Zi,Gu,La,Cu,Pa,Ra,De,Cu,Cu,Lu,Lu,Lu,Ra,Ra,Lu,Zi,Cu,Pa,Lu,Si,Pa,Ra,Cu,De,Gu,Cu,Gu,Zi,De,Gu,Lu,Ra,Gu,La,De,De,Pa,Cu,De,Gu,Si,Lu,De,Lu,La,Cu,Si,Lu,De,De,Cu,De,La,Ra,Gu,Ra,Cu,Ra,Zi,Gu,Zi,Cu,Lu,Gu,Gu,Ra,Zi,Lu,Pa,Cu,La,Gu,La,Ra,Ra,De,Gu,Gu,Pa,Lu,De,Zi,La,Pa,Ra,Pa,Ra,La,Ra,De,Cu,Lu,Lu,Gu,Pa,Pa,Ra,Gu,Si,De,Gu,De,De,De,Cu,Zi,Ra,Lu,De,Gu,Ra,Pa,De,Si,Gu,Gu,Cu,Si,Si,Lu,Ra,Cu,Cu,Pa,Cu,Zi,Ra,De,Ra,Si,La,Lu,De,De,Zi,Ra,Gu,Zi,Gu,Zi,Si,De,Si,Pa,Zi,Gu,Cu,Zi,Ra,Pa,Cu,Ra,Lu,Gu,Ra,Gu,Gu,Gu,Ra,Ra,Ra,Pa,Si,La,Cu,Lu,Gu,La,Zi,La,La,Ra,Gu,De,Pa,Ra,De,La,De,De,Zi,Si,Pa,De,Gu,Lu,Pa,Si,Gu,Gu,Ra,La,Lu,Cu,Si,Zi,Si,Zi,De,La,De,Ra,Pa,Zi,La,La,Si,La,La,Pa,La,De,Cu,Gu,Gu,Lu,De,Gu,Zi,Si,Pa,Gu,Cu,Gu,Gu,Pa,Si,La,Si,Cu"
+    },
+    "protection": {},
+    "roi": {
+      "0": 0.41100000000000003,
+      "110": 0.133,
+      "156": 0.057,
+      "506": 0
+    }
+  },
+  "ft_stratparam_v": 1,
+  "export_time": "2021-10-20 16:06:34.566150+00:00"
+}

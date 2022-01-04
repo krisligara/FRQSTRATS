@@ -1,0 +1,39 @@
+{
+  "strategy_name": "FrayLIVEBTC15m",
+  "params": {
+    "stoploss": {
+      "stoploss": -0.224
+    },
+    "trailing": {
+      "trailing_stop": true,
+      "trailing_stop_positive": 0.346,
+      "trailing_stop_positive_offset": 0.411,
+      "trailing_only_offset_is_reached": true
+    },
+    "buy": {
+      "buy_dip_frsi": 0.04,
+      "buy_frsi": 0.788,
+      "ema_pct": 0.0404,
+      "frsi_pct": 0.5436,
+      "macdn_buy": 0.22
+    },
+    "sell": {
+      "macd_diff": 0.0062,
+      "macdn_sell": 0.74,
+      "sell_frsi": -0.5
+    },
+    "protection": {
+      "cooldown_lookback": 3,
+      "stop_duration": 3,
+      "use_stop_protection": true
+    },
+    "roi": {
+      "0": 0.099,
+      "24": 0.048,
+      "79": 0.033,
+      "185": 0
+    }
+  },
+  "ft_stratparam_v": 1,
+  "export_time": "2021-11-08 13:49:42.999622+00:00"
+}

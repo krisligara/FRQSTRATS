@@ -1,0 +1,33 @@
+{
+  "strategy_name": "PRICEFOLLOWING",
+  "params": {
+    "buy": {
+      "ema_pct": 0.0193,
+      "rsi_enabled": true,
+      "rsi_value": 50
+    },
+    "sell": {
+      "ema_sell_pct": 0.0709,
+      "sell_rsi_enabled": true,
+      "sell_rsi_value": 61
+    },
+    "protection": {},
+    "roi": {
+      "0": 0.233,
+      "112": 0.10900000000000001,
+      "253": 0.042,
+      "602": 0
+    },
+    "stoploss": {
+      "stoploss": -0.161
+    },
+    "trailing": {
+      "trailing_stop": true,
+      "trailing_stop_positive": 0.195,
+      "trailing_stop_positive_offset": 0.29000000000000004,
+      "trailing_only_offset_is_reached": false
+    }
+  },
+  "ft_stratparam_v": 1,
+  "export_time": "2021-11-05 07:06:34.024309+00:00"
+}
