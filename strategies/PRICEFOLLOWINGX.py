@@ -41,7 +41,7 @@ class PRICEFOLLOWINGX(IStrategy):
                     "lookback_period_candles": 48,
                     "trade_limit": 5,
                     "stop_duration_candles": 5,
-                    "max_allowed_drawdown": 0.55
+                    "max_allowed_drawdown": 0.75
                 },
                 {
                     "method": "StoplossGuard",
@@ -55,15 +55,8 @@ class PRICEFOLLOWINGX(IStrategy):
                     "lookback_period_candles": 30,
                     "trade_limit": 2,
                     "stop_duration_candles": 6,
-                    "required_profit": 0.003
+                    "required_profit": 0.005
                 },
-                {
-                    "method": "LowProfitPairs",
-                    "lookback_period_candles": 24,
-                    "trade_limit": 4,
-                    "stop_duration_candles": 3,
-                    "required_profit": 0.003
-                }
             ]
     # Strategy interface version - allow new iterations of the strategy interface.
     # Check the documentation or the Sample strategy to get the latest version.
@@ -80,7 +73,7 @@ class PRICEFOLLOWINGX(IStrategy):
 
     # Optimal stoploss designed for the strategy.
     # This attribute will be overridden if the config file contains "stoploss".
-    stoploss = -0.15
+    stoploss = -0.5
 
     # Trailing stoploss
     trailing_stop = True
@@ -91,13 +84,13 @@ class PRICEFOLLOWINGX(IStrategy):
     # Hyperoptable parameters
     rsi_enabled = BooleanParameter(default=True, space='buy', optimize=True, load=True)
     #buy_rsi = DecimalParameter(0, 50, decimals = 2, default = 40, space="buy", optimize=True, load=True)
-    ema_pct = DecimalParameter(0.001, 0.1, decimals = 2, default = 0.004, space="buy", optimize=True, load=True)
-    buy_frsi = DecimalParameter(-0.99, 0.1, decimals = 3, default = 0, space="buy", optimize=True, load=True)
-    frsi_pct = DecimalParameter(0.01, 0.2, decimals = 2, default = 0.1, space="buy", optimize=True, load=True)
+    ema_pct = DecimalParameter(0.001, 0.100, decimals = 3, default = 0.040, space="buy", optimize=True, load=True)
+    buy_frsi = DecimalParameter(-0.71, 0.50, decimals = 2, default = -0.40, space="buy", optimize=True, load=True)
+    frsi_pct = DecimalParameter(0.01, 0.20, decimals = 2, default = 0.10, space="buy", optimize=True, load=True)
     #sellspace
-    ema_sell_pct = DecimalParameter(0.001, 0.1, decimals = 3, default = 0.003, space="sell", optimize=True, load=True)
+    ema_sell_pct = DecimalParameter(0.001, 0.020, decimals = 3, default = 0.003, space="sell", optimize=True, load=True)
     sell_rsi_enabled = BooleanParameter(default=True, space='sell', optimize=True, load=True)
-    sell_frsi = DecimalParameter(0.00, 0.99, decimals=2, default=0.62, space="sell", load=True) #Main F-RSI
+    sell_frsi = DecimalParameter(-0.30, 0.70, decimals=2, default=0.2, space="sell", load=True)
 
 
     # Optimal timeframe for the strategy.
@@ -197,7 +190,7 @@ class PRICEFOLLOWINGX(IStrategy):
         # Parabolic SAR
         #dataframe['sar'] = ta.SAR(dataframe)
         #Bollinger Bands
-        bollinger = qtpylib.bollinger_bands(qtpylib.typical_price(dataframe), window=20, stds=2)
+        bollinger = qtpylib.bollinger_bands(qtpylib.typical_price(dataframe), window=19, stds=2.2)
         dataframe['bb_lowerband'] = bollinger['lower']
         dataframe['bb_middleband'] = bollinger['mid']
         dataframe['bb_upperband'] = bollinger['upper']
@@ -209,14 +202,14 @@ class PRICEFOLLOWINGX(IStrategy):
             (dataframe["bb_upperband"] - dataframe["bb_lowerband"]) / dataframe["bb_middleband"]
         )
         # TEMA - Triple Exponential Moving Average
-        dataframe['tema'] = ta.TEMA(dataframe, timeperiod=12)
+        dataframe['tema'] = ta.TEMA(dataframe, timeperiod=7)
 
         # Cycle Indicator
         # ------------------------------------
         # Hilbert Transform Indicator - SineWave
-        hilbert = ta.HT_SINE(dataframe)
-        dataframe['htsine'] = hilbert['sine']
-        dataframe['htleadsine'] = hilbert['leadsine']
+        #hilbert = ta.HT_SINE(dataframe)
+        #dataframe['htsine'] = hilbert['sine']
+        #dataframe['htleadsine'] = hilbert['leadsine']
         
         # # Chart type
         # # ------------------------------------
@@ -229,9 +222,9 @@ class PRICEFOLLOWINGX(IStrategy):
 
 
         # # EMA - Exponential Moving Average
-        dataframe['ema7'] = ta.EMA(dataframe, timeperiod=12, price='high')
-        dataframe['ema7low'] = ta.EMA(dataframe, timeperiod=13, price='low')
-        dataframe['ema10high'] = ta.EMA(dataframe, timeperiod=13, price='high')
+        dataframe['ema7'] = ta.SMA(dataframe, timeperiod=14)
+        dataframe['emalow'] = ta.EMA(dataframe, timeperiod=12, price='low')
+        dataframe['emahigh'] = ta.EMA(dataframe, timeperiod=14, price='high')
         #dataframe['ema100'] = ta.EMA(dataframe, timeperiod=100)
 
         # first check if dataprovider is available
@@ -248,30 +241,24 @@ class PRICEFOLLOWINGX(IStrategy):
 
         #rsi_enabled = BooleanParameter(default=True, space='buy', optimize=True)
 
-        last_ema7low = dataframe['ema7low'].tail()
+        last_emalow = dataframe['emalow'].tail()
         last_tema = dataframe['tema'].tail()
         haclose = dataframe['ha_close'].tail(3)
         haclose3rdlast, haclose2ndlast, hacloselast = haclose
         haopen = dataframe['ha_open']
-        frsi_last3 = dataframe['frsi'].tail(3)
-        frsi3rdlast, frsi2ndlast, frsilast = frsi_last3
         Conditions = []
         #GUARDS
         if self.rsi_enabled.value:
            Conditions.append(qtpylib.crossed_below(dataframe['frsi'], self.buy_frsi.value))
-           Conditions.append(qtpylib.crossed_above(dataframe['tema'], dataframe['ema7low']))
-           #Conditions.append(abs(frsilast - frsi2ndlast) < abs(frsi2ndlast - frsi3rdlast) <= self.frsi_pct.value )
-           #Conditions.append((abs(last_tema - last_ema7low) / last_ema7low) < self.ema_pct.value)
-           #Conditions.append(dataframe['macdsignal'] >= dataframe['macd'])
-           Conditions.append(dataframe['best_bid'] < dataframe['bb_lowerband'])
-           #Conditions.append(dataframe['tema'] > dataframe['tema'].shift(1))
+           Conditions.append(dataframe['tema'] < dataframe['bb_lowerband'])
+           Conditions.append(qtpylib.crossed_below(dataframe['tema'], dataframe['emalow']))
+           #Conditions.append(dataframe['best_bid'] < dataframe['bb_lowerband'])
+            
         else:
-           Conditions.append(dataframe['tema'] < dataframe['bb_middleband'])
-           Conditions.append(qtpylib.crossed_above(dataframe['tema'], dataframe['ema7low']))
-           Conditions.append(dataframe['tema'].shift(1) < dataframe['ema7low'])
-           Conditions.append(dataframe['tema'] < (dataframe['ema10high']))
-           Conditions.append(dataframe['tema'] > dataframe['tema'].shift(1))
-        
+           Conditions.append(dataframe['tema'] > dataframe['bb_middleband'])
+           Conditions.append(qtpylib.crossed_above(dataframe['tema'], dataframe['ema7']))
+           #Conditions.append(dataframe['best_bid'] < dataframe['bb_lowerband'])
+           #Conditions.append(((abs(last_emalow - last_tema)) / last_tema) > self.ema_sell_pct.value)
         
         if Conditions:
              dataframe.loc[
@@ -295,25 +282,21 @@ class PRICEFOLLOWINGX(IStrategy):
 
             haopen = dataframe['ha_open']
             haclose = dataframe['ha_close']
-            last_ema7 = dataframe['ema7'].tail()
             last_tema = dataframe['tema'].tail()
-            haclose = dataframe['ha_close'].tail(2)
-            haclose2ndlast, hacloselast = haclose
+            last_emahigh = dataframe['emahigh'].tail()
             conditions = []
             # GUARDS AND TRENDS
             if self.sell_rsi_enabled.value:
                  conditions.append(qtpylib.crossed_below(dataframe['frsi'], self.sell_frsi.value))
-                 conditions.append(dataframe['frsi'].shift(1) > self.sell_frsi.value)
+                 conditions.append(dataframe['tema'] < dataframe['bb_middleband'])
                  #conditions.append(haclose2ndlast > hacloselast)
-                 conditions.append(qtpylib.crossed_below(dataframe['tema'], dataframe['ema10high']))
-                 #conditions.append(((abs(last_tema - last_ema7)) / last_tema) < self.ema_sell_pct.value)
+                 conditions.append(qtpylib.crossed_below(dataframe['tema'], dataframe['ema7']))
+                 #conditions.append(dataframe['best_bid'] < dataframe['ha_close'].shift(1))
             else:
-                 conditions.append(dataframe['ha_high'].shift(1) >= dataframe['bb_upperband'])
-                 #conditions.append(haclose2ndlast > hacloselast)
-                 #conditions.append(qtpylib.crossed_below(dataframe['tema'], dataframe['ema10high']))
-                 conditions.append(dataframe['tema'].shift(1) > dataframe['ema10high'])
-                 conditions.append(dataframe['best_bid'] < dataframe['ha_close'].shift(1))
-                 #conditions.append(((abs(last_tema - last_ema7)) / last_tema) < self.ema_sell_pct.value)
+                 conditions.append(dataframe['tema'] < dataframe['bb_middleband'])
+                 conditions.append(qtpylib.crossed_below(dataframe['tema'], dataframe['ema7']))
+                 #conditions.append(dataframe['best_bid'] < dataframe['ha_close'].shift(1))
+                 #conditions.append(((abs(last_emahigh - last_tema)) / last_tema) > self.ema_sell_pct.value)
 
             if conditions:
                  dataframe.loc[

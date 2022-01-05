@@ -2,34 +2,33 @@
   "strategy_name": "PRICEFOLLOWINGX",
   "params": {
     "roi": {
-      "0": 0.317,
-      "38": 0.062,
-      "107": 0.02,
-      "397": 0.02
-    },
-    "stoploss": {
-      "stoploss": -0.245
+      "0": 0.158,
+      "114": 0.126,
+      "281": 0.05,
+      "518": 0.015
     },
     "buy": {
-      "buy_frsi": -0.321,
-      "buy_rsi": 17.82,
-      "ema_pct": 0.06,
-      "frsi_pct": 0.09,
-      "rsi_enabled": true
+      "buy_frsi": 0.07,
+      "ema_pct": 0.099,
+      "frsi_pct": 0.13,
+      "rsi_enabled": false
     },
     "sell": {
-      "ema_sell_pct": 0.019,
-      "sell_frsi": 0.67,
-      "sell_rsi_enabled": false
+      "ema_sell_pct": 0.02,
+      "sell_frsi": 0.03,
+      "sell_rsi_enabled": true
     },
     "protection": {},
+    "stoploss": {
+      "stoploss": -0.139
+    },
     "trailing": {
       "trailing_stop": true,
-      "trailing_stop_positive": 0.346,
-      "trailing_stop_positive_offset": 0.419,
+      "trailing_stop_positive": 0.03,
+      "trailing_stop_positive_offset": 0.06,
       "trailing_only_offset_is_reached": true
     }
   },
   "ft_stratparam_v": 1,
-  "export_time": "2022-01-03 12:08:50.438035+00:00"
+  "export_time": "2022-01-05 13:51:13.652359+00:00"
 }

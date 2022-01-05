@@ -1,0 +1,96 @@
+{
+    "max_open_trades": 2,
+    "stake_currency": "BUSD",
+    "stake_amount": "unlimited",
+    "tradable_balance_ratio": 0.9,
+    "fiat_display_currency": "USD",
+    "timeframe": "15m",
+    "dry_run": false,
+    "cancel_open_orders_on_exit": false,
+    "use_sell_signal": true,
+    "unfilledtimeout": {
+        "buy": 8,
+        "sell": 12,
+        "unit": "minutes",
+    },
+    "bid_strategy": {
+        "price_side": "bid",
+        "ask_last_balance": 0.5,
+        "use_order_book": true,
+        "order_book_top": 2,
+        "check_depth_of_market": {
+            "enabled": true,
+            "bids_to_ask_delta": 0.6
+        }
+    },
+    "ask_strategy": {
+        "price_side": "ask",
+        "use_order_book": true,
+        "order_book_top": 2
+    },
+    "exchange": {
+	"name": "binance",
+	"key":"prFXTojrtuExjfhyBFP7urDXeZXXNuucU76xEEFcH6pBTlqChuRHQmJyeZXlRvvA",
+	"secret":"f9pN55zjv6dJkBKV8XXuvmVwVeXYdnv8YvwS2WT12idCN7CYqOFl9S1Ms6iJXTaq",
+        "ccxt_config": {"enableRateLimit": true},
+        "ccxt_async_config": {
+            "enableRateLimit": true,
+            "rateLimit": 300
+        },
+    "pair_whitelist": [
+            "ETH/BUSD",
+            "XRP/BUSD",
+            "MATIC/BUSD",
+            "RVN/BUSD",
+            "LINK/BUSD"
+        ],
+
+    "pair_blacklist": [
+            "BNB/.*",
+            ".*/USDT"
+       ]
+      },
+    "pairlists": [
+        {
+          "method": "StaticPairList"
+        }
+       ],
+
+    "edge": {
+        "enabled": false,
+        "process_throttle_secs": 2000,
+        "calculate_since_number_of_days": 7,
+        "allowed_risk": 0.2,
+        "stoploss_range_min": -0.01,
+        "stoploss_range_max": -0.3,
+        "stoploss_range_step": -0.001,
+        "minimum_winrate": 0.4,
+        "minimum_expectancy": 0.20,
+        "min_trade_number": 6,
+        "max_trade_duration_minute": 3600,
+        "remove_pumps": false
+    },
+    "telegram": {
+        "enabled": true,
+        "token": "2068043305:AAF2nNmpQDQRlD3RGXtuSg3xeQaMz7UroRs",
+        "chat_id": "1932458259"
+    },
+    "api_server": {
+        "enabled": true,
+        "listen_ip_address": "127.0.0.1",
+        "listen_port": 8080,
+        "verbosity": "error",
+        "enable_openapi": true,
+        "jwt_secret_key": "6f6ae88ee7178eba53269cd71635dfcb3add0bd93325b7423b492724fdec89d7",
+        "CORS_origins": [],
+        "username": "btcusd",
+        "password": "x"
+    },
+    "bot_name": "freqtradeBTCUSDT",
+    "initial_state": "running",
+    "forcebuy_enable": false,
+    "internals": {
+        "process_throttle_secs": 6,
+    }
+   
+}
